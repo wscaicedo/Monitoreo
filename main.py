@@ -15,6 +15,15 @@ def main():
     print('RAM {} MB'.format(int(get_ram_usage() / 1024 / 1024)))
 
 
+    processes = psutil.process_iter()
+
+    for process in processes:
+        if process.name() == "java":
+            print("PID:", process.pid)
+            print("Línea de comandos:", process.cmdline())
+            print("Uso de CPU:", process.cpu_percent(), "%")
+            print("Uso de memoria:", process.memory_percent(), "%")
+
 
 if __name__ == "__main__":
     main ()
